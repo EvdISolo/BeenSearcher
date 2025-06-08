@@ -21,30 +21,20 @@ public class Main {
         int left = 0;
         int right = prices.length - 1;
         while (left < right) {
-            int middle = (left + right) / 2;
-            if (prices[middle] > money) {
-                return prices.length - middle;
-                } else {
-                if (prices[middle] < money) {
-                    left = middle + 1;
-                } else {
-                    right = middle - 1;
-            }
-            }
-
-            }
+            int middle = (left + right)/2 ;
 
 
-                // Ваш код:
-                // Если в middle первый недоступный товар, вернуть размер массива минус middle
-                // Если в middle доступный товар, то искать нужно правее - left = middle + 1
-                // Если в middle недоступный товар, то искать нужно левее - right = middle - 1
 
-        return left;
-    }
-          // иначе не скомпилится, джава сама не знает бинпоиск
+           if (prices[middle] > money && prices[middle - 1] <= money) { // 1
+               return prices.length - middle;
+           } else if (prices[middle] <= money) { // 2
+               left = middle + 1;
+           } else if (prices[middle] >= money) { // 3
+               right = middle - 1;
+          }
         }
-
-
+        return 0; // иначе не скокомпилится, джава сама не знает бинпоиск
+    }
+}
 
 
